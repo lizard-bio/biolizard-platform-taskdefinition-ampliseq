@@ -11,7 +11,7 @@ process RENAME_RAW_DATA_FILES {
     tuple val(meta), path(reads)
 
     output:
-    tuple val(meta), path("${meta.id}{_1,_2,}.fastq.gz", includeInputs: true), emit: fastq
+    tuple val(meta), path("*${meta.id}{_1,_2,}.fastq.gz", includeInputs: true), emit: fastq
     path "versions.yml"                                                      , emit: versions
 
     when:
@@ -19,7 +19,7 @@ process RENAME_RAW_DATA_FILES {
 
     script:
     // Add soft-links to original FastQs for consistent naming in pipeline
-    def args        = task.ext.args ?: 'ln -s'
+    def args        = task.ext.args ?: 'ln'
     if (meta.single_end) {
         """
         if [ ! -f  ${meta.id}.fastq.gz ]; then
