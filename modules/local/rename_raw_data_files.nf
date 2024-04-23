@@ -19,7 +19,8 @@ process RENAME_RAW_DATA_FILES {
 
     script:
     // Add soft-links to original FastQs for consistent naming in pipeline
-    def args        = task.ext.args ?: 'ln'
+    // def args        = task.ext.args ?: 'ln'
+    def args        = 'cp'
     if (meta.single_end) {
         """
         if [ ! -f  ${meta.id}.fastq.gz ]; then
