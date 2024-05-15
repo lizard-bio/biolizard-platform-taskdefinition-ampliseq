@@ -6,7 +6,7 @@ include { QIIME2_FILTERSAMPLES as QIIME2_FILTERSAMPLES_ANCOM } from '../../modul
 include { QIIME2_ANCOMBC_TAX                 } from '../../modules/local/qiime2_ancombc_tax'
 include { QIIME2_ANCOMBC_ASV                 } from '../../modules/local/qiime2_ancombc_asv'
 
-workflow QIIME2_ANCOM {
+workflow QIIME2_ANCOMBC {
     take:
     ch_metadata
     ch_asv
