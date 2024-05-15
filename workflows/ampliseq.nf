@@ -224,7 +224,8 @@ include { KRAKEN2_TAXONOMY_WF           } from '../subworkflows/local/kraken2_ta
 include { QIIME2_EXPORT                 } from '../subworkflows/local/qiime2_export'
 include { QIIME2_BARPLOTAVG             } from '../subworkflows/local/qiime2_barplotavg'
 include { QIIME2_DIVERSITY              } from '../subworkflows/local/qiime2_diversity'
-include { QIIME2_ANCOM                  } from '../subworkflows/local/qiime2_ancom'
+//include { QIIME2_ANCOM                  } from '../subworkflows/local/qiime2_ancom'
+include { QIIME2_ANCOMBC                  } from '../subworkflows/local/qiime2_ancombc'
 include { PHYLOSEQ_WORKFLOW             } from '../subworkflows/local/phyloseq_workflow'
 
 /*
@@ -677,7 +678,7 @@ workflow AMPLISEQ {
             QIIME2_BARPLOTAVG ( ch_metadata, QIIME2_EXPORT.out.rel_tsv, ch_tax, params.metadata_category_barplot )
         }
 
-        //Select metadata categories for diversity analysis & ancom
+        //Select metadata categories for diversity analysis & ancom-bc
         if (params.metadata_category) {
             ch_metacolumn_all = Channel.fromList(params.metadata_category.tokenize(','))
             METADATA_PAIRWISE ( ch_metadata ).category.set { ch_metacolumn_pairwise }
@@ -714,7 +715,7 @@ workflow AMPLISEQ {
 
         //Perform ANCOM tests
         if ( !params.skip_ancom && params.metadata ) {
-            QIIME2_ANCOM (
+            QIIME2_ANCOMBC (
                 ch_metadata,
                 ch_asv,
                 ch_metacolumn_all,
@@ -875,7 +876,7 @@ workflow AMPLISEQ {
             run_qiime2 && !params.skip_diversity_indices && params.metadata ? QIIME2_DIVERSITY.out.alpha.collect().ifEmpty( [] ) : [],
             run_qiime2 && !params.skip_diversity_indices && params.metadata ? QIIME2_DIVERSITY.out.beta.collect().ifEmpty( [] ) : [],
             run_qiime2 && !params.skip_diversity_indices && params.metadata ? QIIME2_DIVERSITY.out.adonis.collect().ifEmpty( [] ) : [],
-            run_qiime2 && !params.skip_ancom && params.metadata ? QIIME2_ANCOM.out.ancom.collect().ifEmpty( [] ) : [],
+            run_qiime2 && !params.skip_ancom && params.metadata ? QIIME2_ANCOMBC.out.ancom.collect().ifEmpty( [] ) : [],
             params.picrust ? PICRUST.out.pathways.ifEmpty( [] ) : [],
             params.sbdiexport ? SBDIEXPORT.out.sbditables.mix(SBDIEXPORTREANNOTATE.out.sbdiannottables).collect().ifEmpty( [] ) : [],
             !params.skip_taxonomy ? PHYLOSEQ_WORKFLOW.out.rds.map{info,rds -> [rds]}.collect().ifEmpty( [] ) : []
