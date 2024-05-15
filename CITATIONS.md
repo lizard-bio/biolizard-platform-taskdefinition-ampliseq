@@ -117,6 +117,10 @@
 
   > Mandal S, Van Treuren W, White RA, Eggesbø M, Knight R, Peddada SD. Analysis of composition of microbiomes: a novel method for studying microbial composition. Microb Ecol Health Dis. 2015 May 29;26:27663. doi: 10.3402/mehd.v26.27663. PMID: 26028277; PMCID: PMC4450248.
 
+- [ANCOM-BC](https://www.nature.com/articles/s41467-020-17041-7)
+
+  > LIN H, Peddada SD. Analysis of compositions of microbiomes with bias correction. Nat Commun. 2020 Jul 01;11:3514. doi: 10.1038/s41467-020-17041-7.
+
 - [Adonis](https://doi.org/10.1111/j.1442-9993.2001.01070.pp.x) and [VEGAN](https://CRAN.R-project.org/package=vegan)
 
   > Marti J Anderson. A new method for non-parametric multivariate analysis of variance. Austral ecology, 26(1):32–46, 2001.
