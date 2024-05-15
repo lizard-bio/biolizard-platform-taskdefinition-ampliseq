@@ -27,11 +27,8 @@ process QIIME2_ANCOMBC_ASV {
     export MPLCONFIGDIR="./mplconfigdir"
     export NUMBA_CACHE_DIR="./numbacache"
 
-    qiime composition add-pseudocount \\
-        --i-table ${table} \\
-        --o-composition-table comp-${table}
     qiime composition ancombc \\
-        --i-table comp-${table} \\
+        --i-table ${table} \\
         --m-metadata-file ${metadata} \\
         --p-formula ${table.baseName} \\
         --o-differentials ancombc-${table.baseName}.qza
