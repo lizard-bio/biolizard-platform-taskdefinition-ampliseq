@@ -1,6 +1,6 @@
 process DADA2_RMCHIMERA {
     tag "$meta.run"
-    label 'process_medium'
+    label 'process_high'
 
     conda "bioconda::bioconductor-dada2=1.30.0"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
