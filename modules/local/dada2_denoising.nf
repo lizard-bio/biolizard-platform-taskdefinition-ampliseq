@@ -1,6 +1,6 @@
 process DADA2_DENOISING {
     tag "$meta.run"
-    label 'process_medium'
+    label 'process_high'
     label 'process_long'
 
     conda "bioconda::bioconductor-dada2=1.28.0"

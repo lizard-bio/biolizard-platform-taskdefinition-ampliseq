@@ -1,6 +1,7 @@
 process BARRNAP {
     tag "${fasta}"
-    label 'process_low'
+    label 'process_medium'
+    label 'process_long'
 
     conda "bioconda::barrnap=0.9"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
