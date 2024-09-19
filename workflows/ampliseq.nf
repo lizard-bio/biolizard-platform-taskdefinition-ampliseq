@@ -831,7 +831,7 @@ workflow AMPLISEQ {
                 tax_agglom_min,
                 tax_agglom_max
             )
-            ch_versions = ch_versions.mix( QIIME2_ANCOM.out.versions )
+            ch_versions = ch_versions.mix( QIIME2_ANCOMBC.out.versions )
         }
     } else {
         ch_tsv = ch_dada2_asv
